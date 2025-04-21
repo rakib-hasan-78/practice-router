@@ -5,11 +5,14 @@ import { IoClose } from "react-icons/io5";
 import Logo from './../Logo/Logo';
 import Nav from './../Nav/Nav';
 
+
+// ** handler for managing small device navigation  
 const Header = () => {
     const [open, setOpen] = useState(false);
     const navHandler = ()=>{
         setOpen(!open)
     }
+
     return (
         <header 
         className='w-full h-auto bg-white-soft xxs:relative lg:static'>
@@ -17,12 +20,12 @@ const Header = () => {
                 <div className='lg:w-5/12 flex items-center justify-between'>
                     <Logo />
                     {
-                        open &&(<Nav />  )
+                       <Nav isOpen={open} />
                     }
                 </div>
                 <div
                 onClick={navHandler} 
-                className='cursor-pointer text-4xl font-black'>
+                className='cursor-pointer text-4xl font-black xxs:flex lg:hidden'>
                     {
                         open? <IoClose /> : <HiMenuAlt1 /> 
                     }
