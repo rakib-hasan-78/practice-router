@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
                 <div
                 onClick={navHandler} 
-                className='cursor-pointer text-4xl font-black xxs:flex lg:hidden'>
+                className='cursor-pointer text-4xl font-black xxs:flex lg:hidden hover:bg-gray-200 hover:shadow-2xl inset-0 rounded-full  p-2 ease-in-out duration-150 delay-75'>
                     {
                         open? <IoClose /> : <HiMenuAlt1 /> 
                     }

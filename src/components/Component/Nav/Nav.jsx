@@ -14,7 +14,7 @@ const Nav = ({ isOpen }) => {
             xxs:min-h-screen lg:min-h-auto 
             xxs:space-y-5 lg:space-y-0 
             lg:space-x-4 text-lg font-extrabold
-            xxs:absolute xxs:bg-gray-400 lg:bg-transparent top-18 left-0 lg:static xxs:w-full lg:w-max xxs:pt-10`}>
+            xxs:absolute xxs:bg-gray-400 lg:bg-transparent top-18 left-0 lg:static xxs:w-full lg:w-max xxs:pt-10 lg:pt-0`}>
             <NavLink className={getActive} to={'/'}>Home</NavLink>
             <NavLink className={getActive} to={'/about'}>About</NavLink>
             <NavLink className={getActive} to={'/user'}>User</NavLink>
