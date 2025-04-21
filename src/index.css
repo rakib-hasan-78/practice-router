@@ -18,6 +18,9 @@
   /* font-families=====> */
   --font-sans: "Raleway", sans-serif;
   --font-mono:  "Share Tech Mono", monospace;
+
+  /* color */
+  --color-white-soft :oklch(98.44% 0.004 25.27);
 }
 
 
@@ -30,7 +33,14 @@
     @apply w-full h-full scroll-smooth;
   }
   body{
-    @apply w-full h-full font-mono font-bold uppercase text-5xl flex flex-col;
+    @apply w-full h-full font-mono font-bold capitalize text-base flex flex-col;
+  }
+  main{
+    @apply w-11/12 mx-auto;
+  }
+  img{
+    @apply w-full h-full object-fill align-middle;
   }
 
 }
+

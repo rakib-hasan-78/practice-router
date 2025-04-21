@@ -1,23 +1,26 @@
-import { useState } from 'react'
 
+import Logo from './components/Component/Logo/Logo';
+import Nav from './components/Component/Nav/Nav';
+import { HiMenuAlt1 } from "react-icons/hi";
+import Header from './components/Component/Header.jsx/Header';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <h1 className='text-9xl text-amber-300'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <header className='w-full h-auto bg-white-soft my-5 border'>
+      <main className='flex items-center justify-between xxs:relative lg:static'>
+        <div className='w-5/12 flex items-center justify-between'>
+          <Logo />
+          {/* <Nav /> */}
+        </div>
+        <div className='cursor-pointer'>
+            <HiMenuAlt1 className='text-4xl font-black' />
+        </div>
+      </main>
+    </header>
+    <Header />
     </>
   )
 }
