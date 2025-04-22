@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Card = ({loader}) => {
 
     const {name:{common},cca3, area} = loader;
-    const navigate = useNavigate([]);
+    const navigate = useNavigate();
 
     const detail =()=>{
             navigate(`/users/${cca3}`);
