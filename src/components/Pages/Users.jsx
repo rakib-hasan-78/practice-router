@@ -10,6 +10,8 @@ const Users = () => {
     const loader = useLoaderData();
     const [data, setData] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const contentPerPage = 10;
 
 
     useEffect(()=>{
@@ -24,7 +26,17 @@ const Users = () => {
     const clearHandler = ()=>{
         setSearchText('')
     }
+    // ** pagination logic;
+    
+    const totalPages = Math.ceil(filterData.length/contentPerPage);
+    const startIndex = (currentPage-1) * contentPerPage;
+    const currentItems = filterData.slice(startIndex, startIndex + contentPerPage);
 
+    const paginationHandler = (v) =>{
+        if (v>=1 && v <=totalPages) {
+            setCurrentPage(v)
+        }
+    }
 
     return (
         <section className="w-full h-auto">
@@ -55,10 +67,14 @@ const Users = () => {
                 </div>
                 <div className="w-full h-auto grid grid-cols-4  place-items-center gap-x-5 gap-y-3 ">
                     {
-                        filterData.map(loader=>(
+                        currentItems.map(loader=>(
                             <Card key={loader.cca3} loader={loader} />
                         ))
                     }
+                </div>
+                <div className="w-full h-auto flex flex-row items-center">
+                    <button onClick={()=>paginationHandler(currentPage - 1)}>pre</button>
+                    <button onClick={()=>paginationHandler(currentPage + 1)}>next</button>
                 </div>
            </main>
         </section>
