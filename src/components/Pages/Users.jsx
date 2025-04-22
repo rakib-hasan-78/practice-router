@@ -2,24 +2,29 @@
 
 import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
+import Card from './../Component/Card/Card';
 
 
 const Users = () => {
     const loader = useLoaderData();
     const [data, setData] = useState([]);
-    const [searchText, setSearchText] = useState('')
+    const [searchText, setSearchText] = useState('');
+
 
     useEffect(()=>{
         setData(loader);
     },[loader]);
     console.log(data)
 
+    const filterData = data.filter(value=>value.name.common.toLowerCase().includes(searchText.toLowerCase()));
+
+
     // handler for cleaning text field==>
     const clearHandler = ()=>{
         setSearchText('')
     }
+
 
     return (
         <section className="w-full h-auto">
@@ -36,17 +41,8 @@ const Users = () => {
                              type="text" name="" id="" />
                              {
                                 searchText && (
-                                    <button className="absolute right-14 w-12 h-12 m-4 rounded-full cursor-pointer flex items-center justify-center text-xl transition-all delay-75 duration-150">
+                                    <button className="absolute right-0 w-12 h-12 m-4 rounded-full cursor-pointer flex items-center justify-center text-xl transition-all delay-75 duration-150">
                                         <MdClose onClick={clearHandler} />
-                                    </button>
-
-                                )
-                             }
-                             {
-                                searchText && (
-
-                                    <button className="absolute right-0 w-12 h-12 m-4 rounded-full cursor-pointer flex items-center justify-center text-xl border transition-all delay-75 duration-150">
-                                        <FaMagnifyingGlass />
                                     </button>
 
                                 )
@@ -54,9 +50,14 @@ const Users = () => {
                         </div>
                     </div>
                 </div>
+                <div className="w-full h-auto">
+                    
+                </div>
                 <div className="w-full h-auto grid grid-cols-4  place-items-center gap-x-5 gap-y-3 ">
                     {
-                        
+                        filterData.map(loader=>(
+                            <Card key={loader.cca3} loader={loader} />
+                        ))
                     }
                 </div>
            </main>
