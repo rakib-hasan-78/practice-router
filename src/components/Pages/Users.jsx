@@ -3,6 +3,7 @@
 import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
+import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import Card from './../Component/Card/Card';
 
 
@@ -11,13 +12,13 @@ const Users = () => {
     const [data, setData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const contentPerPage = 10;
+    const contentPerPage = 20;
 
 
     useEffect(()=>{
         setData(loader);
     },[loader]);
-    console.log(data)
+    
 
     const filterData = data.filter(value=>value.name.common.toLowerCase().includes(searchText.toLowerCase()));
 
@@ -28,15 +29,15 @@ const Users = () => {
     }
     // ** pagination logic;
     
-    const totalPages = Math.ceil(filterData.length/contentPerPage);
-    const startIndex = (currentPage-1) * contentPerPage;
-    const currentItems = filterData.slice(startIndex, startIndex + contentPerPage);
+    const totalPages = Math.ceil(filterData.length / contentPerPage);
+    const currentIndex = (currentPage-1) * contentPerPage;
+    const currentItems = filterData.slice(currentIndex, currentIndex + contentPerPage);
 
-    const paginationHandler = (v) =>{
-        if (v>=1 && v <=totalPages) {
-            setCurrentPage(v)
+    const gotPagination = pagiValue =>{
+        if (pagiValue>=1 && pagiValue<=totalPages) {
+            setCurrentPage(pagiValue)
         }
-    }
+    } 
 
     return (
         <section className="w-full h-auto">
@@ -72,9 +73,36 @@ const Users = () => {
                         ))
                     }
                 </div>
-                <div className="w-full h-auto flex flex-row items-center">
-                    <button onClick={()=>paginationHandler(currentPage - 1)}>pre</button>
-                    <button onClick={()=>paginationHandler(currentPage + 1)}>next</button>
+                <div className="w-2/12 h-auto flex flex-row items-center justify-center mx-auto my-5 space-x-3">
+                    <div className="flex items-center font-sans uppercase font-light">
+                        <button
+                        disabled={currentPage===1}
+                        onClick={()=>gotPagination(currentPage-1)}
+                         className="text-3xl cursor-pointer text-yellow-500 disabled:cursor-default disabled:opacity-50" type="button">
+                            <IoIosArrowRoundBack />
+                        </button>
+                        <span className="text-sm">prev</span>
+                    </div>
+                    {
+                        Array.from({length: totalPages},(_ ,idx )=>{
+                           return <button 
+                            key={idx +1}
+                            className={`px-3 py-1 rounded-full ${currentPage === idx+1 ? 'bg-radial-[at_25%_25%] from-zinc-600 to-zinc-700 to-75% text-zinc-50':''}`}
+                            onClick={()=>gotPagination(currentPage + 1)}
+                            >
+                            {idx +1}
+                            </button>
+                        })
+                    }
+                    <div className="flex items-center font-sans uppercase font-light">
+                        <span className="text-sm">next</span>
+                        <button 
+                        disabled={currentPage===totalPages}
+                        onClick={()=>gotPagination(currentPage + 1)}
+                        className="text-3xl cursor-pointer disabled:cursor-default disabled:opacity-50 text-yellow-500" type="button">
+                            <IoIosArrowRoundForward />
+                        </button>
+                    </div>
                 </div>
            </main>
         </section>
@@ -82,3 +110,5 @@ const Users = () => {
 };
 
 export default Users;
+
+
