@@ -6,13 +6,14 @@ import Home from './components/Pages/Home';
 import About from './components/Pages/About';
 import Users from './components/Pages/Users';
 import Detail from './components/Component/Detail/Detail';
+import ErrorBoundary from './components/Component/Error/ErrorBoundary';
 
 
 const router = createBrowserRouter([
   {
     path:'/',
     element: <Home />,
-    errorElement: <div>error 404!</div>,
+    errorElement: <ErrorBoundary />,
     children: [
   {
     path: '/about', // ✅ relative path

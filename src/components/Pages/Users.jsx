@@ -88,7 +88,7 @@ const Users = () => {
                            return <button 
                             key={idx +1}
                             className={`px-3 py-1 rounded-full ${currentPage === idx+1 ? 'bg-radial-[at_25%_25%] from-zinc-600 to-zinc-700 to-75% text-zinc-50':''}`}
-                            onClick={()=>gotPagination(currentPage + 1)}
+                            onClick={()=>gotPagination(idx + 1)}
                             >
                             {idx +1}
                             </button>
@@ -110,5 +110,3 @@ const Users = () => {
 };
 
 export default Users;
-
-
