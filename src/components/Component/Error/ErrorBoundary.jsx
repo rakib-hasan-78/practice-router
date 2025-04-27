@@ -20,7 +20,7 @@ const ErrorBoundary = () => {
         } else if (errorRoute.statusText) {
             messages = errorRoute.statusText;
         } else if (errorRoute.message) {
-            messages = errorRoute.message;
+            messages =`'${location.pathname}' is an Invalid search`;
         }
     }
 
@@ -31,6 +31,11 @@ const ErrorBoundary = () => {
   style={{ backgroundImage: `url(${errorImg})` }}
 >
         <div className='bg-gradient-to-tl from-zinc-800/80 via-zinc-700/60 to-transparent backdrop-blur-md border border-white/20 rounded-lg shadow-lg p-8 w-9/12 flex flex-col items-center justify-center relative'>
+            {
+                errorRoute.status ? <span className='text-5xl text-blue-400'>fatal error : {errorRoute.status}</span> :
+                <span className='text-5xl text-blue-400'>Something went wrong! error:404</span>
+            }
+            <br />
             <h1 className="text-yellow-500 text-3xl p-10 rounded-lg relative">{messages}</h1>
             <button className='text-blue-600 cursor-pointer' onClick={backHandler}>back</button>
         </div>

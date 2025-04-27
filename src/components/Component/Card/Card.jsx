@@ -11,7 +11,7 @@ const Card = ({loader}) => {
             navigate(`/users/${cca3}`);
     }
     return (
-        <div onClick={detail} className='w-10/12 border p-2 my-2 cursor-pointer'>
+        <div role="button" aria-label={`Go to details of ${common || 'Unknown Country'}`} onClick={detail} className='w-10/12 border p-2 my-2 cursor-pointer'>
             <h2>country: <small>{common}</small></h2>
             <h3>area: <small>{area}SqKm.</small></h3>       
         </div>
